@@ -7,6 +7,11 @@ from sklearn.impute import SimpleImputer
 
 
 def prep_iris(iris):
+    '''
+    This function takes in the iris data acquired by get_iris_data,
+    dropes unnececary columns and renames column species_name to species.
+    returns cleaned up ready to explore data.
+    '''
     iris = iris.drop(columns=['species_id','measurement_id'])
     iris = iris.rename(columns={'species_name':'species'})
     dummy_iris = pd.get_dummies(iris.species, drop_first=True)
@@ -15,6 +20,12 @@ def prep_iris(iris):
 
 
 def prep_titanic(titanic):
+    '''
+    This function takes in the titanic data acquired by get_titanic_data,
+   dropes unnececary columns. Filles up missing values, creates and concats dummies
+   returns cleaned up ready to explore data.
+   
+    '''
     titanic = titanic.drop(columns=['embarked','class','deck'])
     dummy_df = pd.get_dummies(data=titanic[['sex','embark_town']], drop_first=True)
     titanic = pd.concat([titanic, dummy_df], axis=1)
@@ -27,6 +38,11 @@ def prep_titanic(titanic):
 
 
 def prep_telco(telco):
+    '''
+    This function takes in the telco data acquired by get_telco_data,
+    Does encoding, dropes unnecary columns, creates and concats dummies.
+    returns cleaned up ready to explore data.
+    '''
     
     telco['gender_encoded'] = telco.gender.map({'Female': 1, 'Male': 0})
     telco['partner_encoded'] = telco.partner.map({'Yes': 1, 'No': 0})
@@ -56,9 +72,7 @@ def prep_telco(telco):
                               'streaming_tv', \
                               'streaming_movies', \
                               'contract_type_id', \
-                              'internet_service_type', \
                               'payment_type', \
-                              'customer_id', \
                                 'Unnamed: 0'])
     
     return telco
@@ -69,6 +83,9 @@ def prep_telco(telco):
 
 
 def my_train_test_split(df, target):
+    '''takes a dataframe and target. splits the dataframe into train and split with the test size .2.
+    And then takes train data splits it into train and validate. validate size.25
+    returns 3 datasets train, validate and test'''
     
     train, test = train_test_split(df, test_size=.2, random_state=123, stratify=df[target])
     train, validate = train_test_split(train, test_size=.25, random_state=123, stratify=train[target])
