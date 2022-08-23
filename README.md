@@ -16,7 +16,7 @@ Project paln:
 
  Project goal:
 1. To find 4 biggest factors that make customers churn
-2. Make reccommendations on changes
+2. Make reccommendations on changes to bring the churn rate down
 
 
 
