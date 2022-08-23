@@ -1,6 +1,12 @@
 # PROJECT_1
 
 
+Data dictionary:
+Target: Churn
+Datatype: Object
+Definiton: Customer left
+
+
 Project paln:
 1. Acquire my data by using my acquire.py
 2. Prepare my data by using my prepare.py
